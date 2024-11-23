@@ -22,19 +22,18 @@ accuracies = []
 start_time = time()
 random_state_offset = np.random.randint(0, 1000)
 for i in range(num_iterations):
-    # Step 1: Split dataset into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=random_state_offset*i)
     
-    # Step 2: Normalize features to [0, 1] range
+    # Normalization 
     scaler = MinMaxScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
 
-    # Step 3: Initialize and train logistic regression model
+    # Train model
     model = LogisticRegressionEP34()
     model.fit(X_train, y_train, iterations=10000, batch_size=64)
 
-    # Step 4: Evaluate the model
+    # Run predictions
     predictions = model.predict(X_test) >= 0.5  # Binary classification threshold
     accuracy = np.mean(predictions == y_test)
     accuracies.append(accuracy)
@@ -58,7 +57,7 @@ if len(cpu_model) > 0:
 else:
     cpu_model = "Unknown"
 
-# Print out the cpu and available memory
+# Print out the system, cpu and available memory information
 print("\nSystem Information:")
 print(f"\tSystem: {platform.system()} {platform.release()}")
 print(f"\tCPU Model: {platform.processor()} ({cpu_model})")
