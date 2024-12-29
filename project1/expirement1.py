@@ -13,7 +13,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_
 
 # Initialize and train the logistic regression model
 model = LogisticRegressionEP34()
-model.fit(X_train, y_train, iterations=10000, batch_size=None, show_step=1000, show_line=True)
+model.fit(X_train, y_train, iterations=10000, batch_size=None, show_step=1000, show_line=True, genGif=True)
 
 # Evaluate the model
 predictions = model.predict(X_test) >= 0.5  # Threshold for binary classification

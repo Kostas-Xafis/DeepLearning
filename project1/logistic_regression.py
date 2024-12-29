@@ -23,6 +23,7 @@ class LogisticRegressionEP34:
         return X @ self.w + self.b
 
     def forward(self, X):
+        '''Forward pass: Compute sigmoid of the linear combination of weights and features'''
         self.f = np.power(1 + np.exp(-self.__lb(X)), -1)  # Sigmoid function
         return self.f
 
@@ -30,23 +31,27 @@ class LogisticRegressionEP34:
         return np.power(1 + np.exp(-self.__lb(X)), -1)
 
     def loss(self, X, y):
+        '''Compute binary cross-entropy loss'''
         # Compute predictions
         predictions = self.predict(X)
         # Binary cross-entropy loss
         return -np.mean(y * np.log(predictions) + (1 - y) * np.log(1 - predictions))
 
     def backward(self, X, y):
+        '''Backward pass: Compute gradients of loss w.r.t weights and bias'''
         # Gradient of loss w.r.t weights and bias
         error = self.f - y  # Error term, where `self.f` is computed by `forward()`
         self.l_grad_w = X.T @ error / len(y)  # Gradient for weights
         self.l_grad_b = np.mean(error)        # Gradient for bias
 
     def step(self):
+        '''Update weights and bias using gradients computed in `backward()`'''
         # Update weights and bias using learning rate
         self.w -= self.lr * self.l_grad_w
         self.b -= self.lr * self.l_grad_b
 
     def fit(self, X, y, iterations=10000, batch_size=None, show_step=1000, show_line=False, genGif=False):
+        '''Train the logistic regression model using gradient descent'''
         # Ensure input is numpy and initialize parameters
         X = np.array(X)
         y = np.array(y)
@@ -91,9 +96,9 @@ class LogisticRegressionEP34:
                 if show_line:
                     self.show_line(X, y, i)
                     if genGif:
-                        self.populateGIF(int(i / show_step))
-        if genGif:
-            self.generateGIF("logistic_regression.gif")
+                        self.__populateGIF(int(i / show_step))
+        # if genGif:
+        #     self.__generateGIF("logistic_regression.gif")
 
 
     def show_line(self, X, y, iterations):
@@ -118,17 +123,18 @@ class LogisticRegressionEP34:
         plt.show(block=False)
         plt.pause(0.1)
 
-    def populateGIF(self, i):
-        plt.savefig(f"./images/temp_{i}.png")
+    def __populateGIF(self, i):
+        filename = f"./images/img_{i}.png"
+        plt.savefig(filename)
         plt.clf()
-        self.gifImages.append(imageio.imread(f"./images/temp_{i}.png"))
+        self.gifImages.append(imageio.imread(filename))
 
-    def generateGIF(self, filename):
+    def __generateGIF(self, filename):
         imageCount = len(self.gifImages)
         # Add some extra frames to the end to make the gif, to extend it's time
         self.gifImages = self.gifImages + [self.gifImages[-1]] * 6
         imageio.mimsave(filename, self.gifImages, loop=0, fps=3)
 
         # Clean up temporary files
-        for i in range(1, imageCount):
-            os.remove(f"./images/temp_{i}.png")
+        # for i in range(1, imageCount):
+        #     os.remove(f"./images/temp_{i}.png")
