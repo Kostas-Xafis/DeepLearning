@@ -1,0 +1,306 @@
+Loading the training data into the GPU memory
+Starting training
+=========== Epoch: 1 ===========
+Starting training
+=========== Epoch: 1 ===========
+	[Batch:  19]: Loss = 1.264
+	[Batch:  38]: Loss = 1.272
+	[Batch:  57]: Loss = 1.268
+	[Batch:  76]: Loss = 1.268
+	[Batch:  95]: Loss = 1.259
+	[Batch: 114]: Loss = 1.286
+	[Batch: 133]: Loss = 1.243
+	[Batch: 152]: Loss = 1.241
+	[Batch: 171]: Loss = 1.258
+	[Batch: 190]: Loss = 1.262
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.86%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 2 ===========
+	[Batch:  19]: Loss = 1.268
+	[Batch:  38]: Loss = 1.279
+	[Batch:  57]: Loss = 1.265
+	[Batch:  76]: Loss = 1.252
+	[Batch:  95]: Loss = 1.242
+	[Batch: 114]: Loss = 1.272
+	[Batch: 133]: Loss = 1.253
+	[Batch: 152]: Loss = 1.268
+	[Batch: 171]: Loss = 1.251
+	[Batch: 190]: Loss = 1.277
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 3 ===========
+	[Batch:  19]: Loss = 1.261
+	[Batch:  38]: Loss = 1.268
+	[Batch:  57]: Loss = 1.268
+	[Batch:  76]: Loss = 1.244
+	[Batch:  95]: Loss = 1.275
+	[Batch: 114]: Loss = 1.251
+	[Batch: 133]: Loss = 1.265
+	[Batch: 152]: Loss = 1.267
+	[Batch: 171]: Loss = 1.261
+	[Batch: 190]: Loss = 1.273
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 4 ===========
+	[Batch:  19]: Loss = 1.249
+	[Batch:  38]: Loss = 1.270
+	[Batch:  57]: Loss = 1.254
+	[Batch:  76]: Loss = 1.258
+	[Batch:  95]: Loss = 1.250
+	[Batch: 114]: Loss = 1.267
+	[Batch: 133]: Loss = 1.263
+	[Batch: 152]: Loss = 1.267
+	[Batch: 171]: Loss = 1.277
+	[Batch: 190]: Loss = 1.254
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 5 ===========
+	[Batch:  19]: Loss = 1.269
+	[Batch:  38]: Loss = 1.271
+	[Batch:  57]: Loss = 1.255
+	[Batch:  76]: Loss = 1.269
+	[Batch:  95]: Loss = 1.254
+	[Batch: 114]: Loss = 1.249
+	[Batch: 133]: Loss = 1.276
+	[Batch: 152]: Loss = 1.246
+	[Batch: 171]: Loss = 1.254
+	[Batch: 190]: Loss = 1.283
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 6 ===========
+	[Batch:  19]: Loss = 1.272
+	[Batch:  38]: Loss = 1.255
+	[Batch:  57]: Loss = 1.255
+	[Batch:  76]: Loss = 1.250
+	[Batch:  95]: Loss = 1.275
+	[Batch: 114]: Loss = 1.268
+	[Batch: 133]: Loss = 1.267
+	[Batch: 152]: Loss = 1.265
+	[Batch: 171]: Loss = 1.268
+	[Batch: 190]: Loss = 1.254
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 7 ===========
+	[Batch:  19]: Loss = 1.283
+	[Batch:  38]: Loss = 1.241
+	[Batch:  57]: Loss = 1.259
+	[Batch:  76]: Loss = 1.254
+	[Batch:  95]: Loss = 1.264
+	[Batch: 114]: Loss = 1.256
+	[Batch: 133]: Loss = 1.264
+	[Batch: 152]: Loss = 1.268
+	[Batch: 171]: Loss = 1.252
+	[Batch: 190]: Loss = 1.272
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 8 ===========
+	[Batch:  19]: Loss = 1.258
+	[Batch:  38]: Loss = 1.251
+	[Batch:  57]: Loss = 1.247
+	[Batch:  76]: Loss = 1.268
+	[Batch:  95]: Loss = 1.275
+	[Batch: 114]: Loss = 1.287
+	[Batch: 133]: Loss = 1.272
+	[Batch: 152]: Loss = 1.281
+	[Batch: 171]: Loss = 1.249
+	[Batch: 190]: Loss = 1.250
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 9 ===========
+	[Batch:  19]: Loss = 1.250
+	[Batch:  38]: Loss = 1.254
+	[Batch:  57]: Loss = 1.264
+	[Batch:  76]: Loss = 1.279
+	[Batch:  95]: Loss = 1.256
+	[Batch: 114]: Loss = 1.265
+	[Batch: 133]: Loss = 1.269
+	[Batch: 152]: Loss = 1.266
+	[Batch: 171]: Loss = 1.253
+	[Batch: 190]: Loss = 1.262
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 10 ===========
+	[Batch:  19]: Loss = 1.287
+	[Batch:  38]: Loss = 1.254
+	[Batch:  57]: Loss = 1.245
+	[Batch:  76]: Loss = 1.277
+	[Batch:  95]: Loss = 1.249
+	[Batch: 114]: Loss = 1.272
+	[Batch: 133]: Loss = 1.256
+	[Batch: 152]: Loss = 1.263
+	[Batch: 171]: Loss = 1.259
+	[Batch: 190]: Loss = 1.265
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 11 ===========
+	[Batch:  19]: Loss = 1.296
+	[Batch:  38]: Loss = 1.297
+	[Batch:  57]: Loss = 1.234
+	[Batch:  76]: Loss = 1.258
+	[Batch:  95]: Loss = 1.249
+	[Batch: 114]: Loss = 1.249
+	[Batch: 133]: Loss = 1.275
+	[Batch: 152]: Loss = 1.264
+	[Batch: 171]: Loss = 1.259
+	[Batch: 190]: Loss = 1.244
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 12 ===========
+	[Batch:  19]: Loss = 1.256
+	[Batch:  38]: Loss = 1.263
+	[Batch:  57]: Loss = 1.281
+	[Batch:  76]: Loss = 1.253
+	[Batch:  95]: Loss = 1.255
+	[Batch: 114]: Loss = 1.257
+	[Batch: 133]: Loss = 1.277
+	[Batch: 152]: Loss = 1.254
+	[Batch: 171]: Loss = 1.251
+	[Batch: 190]: Loss = 1.278
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 13 ===========
+	[Batch:  19]: Loss = 1.254
+	[Batch:  38]: Loss = 1.261
+	[Batch:  57]: Loss = 1.276
+	[Batch:  76]: Loss = 1.289
+	[Batch:  95]: Loss = 1.275
+	[Batch: 114]: Loss = 1.268
+	[Batch: 133]: Loss = 1.258
+	[Batch: 152]: Loss = 1.259
+	[Batch: 171]: Loss = 1.248
+	[Batch: 190]: Loss = 1.249
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 14 ===========
+	[Batch:  19]: Loss = 1.275
+	[Batch:  38]: Loss = 1.273
+	[Batch:  57]: Loss = 1.266
+	[Batch:  76]: Loss = 1.250
+	[Batch:  95]: Loss = 1.272
+	[Batch: 114]: Loss = 1.261
+	[Batch: 133]: Loss = 1.249
+	[Batch: 152]: Loss = 1.263
+	[Batch: 171]: Loss = 1.258
+	[Batch: 190]: Loss = 1.274
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 15 ===========
+	[Batch:  19]: Loss = 1.269
+	[Batch:  38]: Loss = 1.249
+	[Batch:  57]: Loss = 1.274
+	[Batch:  76]: Loss = 1.244
+	[Batch:  95]: Loss = 1.270
+	[Batch: 114]: Loss = 1.260
+	[Batch: 133]: Loss = 1.281
+	[Batch: 152]: Loss = 1.251
+	[Batch: 171]: Loss = 1.254
+	[Batch: 190]: Loss = 1.270
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 16 ===========
+	[Batch:  19]: Loss = 1.274
+	[Batch:  38]: Loss = 1.277
+	[Batch:  57]: Loss = 1.249
+	[Batch:  76]: Loss = 1.254
+	[Batch:  95]: Loss = 1.241
+	[Batch: 114]: Loss = 1.255
+	[Batch: 133]: Loss = 1.271
+	[Batch: 152]: Loss = 1.281
+	[Batch: 171]: Loss = 1.270
+	[Batch: 190]: Loss = 1.256
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 17 ===========
+	[Batch:  19]: Loss = 1.247
+	[Batch:  38]: Loss = 1.272
+	[Batch:  57]: Loss = 1.286
+	[Batch:  76]: Loss = 1.258
+	[Batch:  95]: Loss = 1.260
+	[Batch: 114]: Loss = 1.239
+	[Batch: 133]: Loss = 1.240
+	[Batch: 152]: Loss = 1.257
+	[Batch: 171]: Loss = 1.283
+	[Batch: 190]: Loss = 1.266
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 18 ===========
+	[Batch:  19]: Loss = 1.294
+	[Batch:  38]: Loss = 1.282
+	[Batch:  57]: Loss = 1.259
+	[Batch:  76]: Loss = 1.303
+	[Batch:  95]: Loss = 1.234
+	[Batch: 114]: Loss = 1.239
+	[Batch: 133]: Loss = 1.263
+	[Batch: 152]: Loss = 1.227
+	[Batch: 171]: Loss = 1.270
+	[Batch: 190]: Loss = 1.254
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 19 ===========
+	[Batch:  19]: Loss = 1.263
+	[Batch:  38]: Loss = 1.247
+	[Batch:  57]: Loss = 1.265
+	[Batch:  76]: Loss = 1.265
+	[Batch:  95]: Loss = 1.273
+	[Batch: 114]: Loss = 1.263
+	[Batch: 133]: Loss = 1.275
+	[Batch: 152]: Loss = 1.279
+	[Batch: 171]: Loss = 1.254
+	[Batch: 190]: Loss = 1.259
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 20 ===========
+	[Batch:  19]: Loss = 1.268
+	[Batch:  38]: Loss = 1.272
+	[Batch:  57]: Loss = 1.243
+	[Batch:  76]: Loss = 1.275
+	[Batch:  95]: Loss = 1.274
+	[Batch: 114]: Loss = 1.265
+	[Batch: 133]: Loss = 1.257
+	[Batch: 152]: Loss = 1.255
+	[Batch: 171]: Loss = 1.254
+	[Batch: 190]: Loss = 1.272
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.96%,	Validation Accuracy: 47.41%
+
+Accuracy: 47.83%, Avg. Loss: 1.26
+Loading the training data into the GPU memory
+Starting training
+=========== Epoch: 1 ===========
+	[Batch:  19]: Loss = 1.278
+	[Batch:  38]: Loss = 1.253
+	[Batch:  57]: Loss = 1.276
+	[Batch:  76]: Loss = 1.258
+	[Batch:  95]: Loss = 1.258
+	[Batch: 114]: Loss = 1.245
+	[Batch: 133]: Loss = 1.281
+	[Batch: 152]: Loss = 1.253
+	[Batch: 171]: Loss = 1.276
+	[Batch: 190]: Loss = 1.267
+Train Loss: 1.26,	Validation Loss: 1.26
+Train Accuracy: 47.73%,	Validation Accuracy: 47.41%
+
+=========== Epoch: 2 ===========
+	[Batch:  19]: Loss = 1.270
+	[Batch:  38]: Loss = 1.253
+	[Batch:  57]: Loss = 1.276
+	[Batch:  76]: Loss = 1.258

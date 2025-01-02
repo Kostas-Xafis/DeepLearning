@@ -74,6 +74,12 @@ class COVID19Dataset(Dataset):
     
     def set_transform(self, transform):
         self.transform = transform
+        
+    def add_transform(self, transform):
+        if self.transform is None:
+            self.transform = transforms.Compose([transform])
+        else:
+            self.transform.transforms.append(transform)
     
     def __len__(self):
         return len(self.image_paths)
@@ -118,42 +124,42 @@ def get_base_dataset():
 def get_covid19_single_dataloader(batch_size=64):
     dataset = get_base_dataset()
     mean, std = get_mean_std(dataset, 20)
-    dataset.transform.transforms.append(transforms.Normalize(mean, std))
     return DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
-def get_covid19_split(dataset: COVID19Dataset = None):
+def get_covid19_split(ds_size: int = 100, image_size: int = 100):
     dataset = get_base_dataset()
     mean, std = get_mean_std(dataset, 20)
-    dataset.transform.transforms.append(transforms.Normalize(mean, std))
+    if image_size != 100:
+        # Resize by actual percentage and not percentage squared
+        w,h = dataset[0][0].shape[1:]
+        nw = int(w - (w * ((100 - image_size) / 2 / 100)))
+        nh = int(h - (h * ((100 - image_size) / 2 / 100)))
+        print('New image size:', nw, 'x', nh)
+        dataset.add_transform(transforms.Resize((nw, nh)))
     generator = torch.Generator().manual_seed(123)
     
-    return random_split(dataset, [0.6, 0.2, 0.2], generator=generator)
+    if ds_size == 100:
+        return random_split(dataset, [0.6, 0.2, 0.2], generator=generator)
+    keep_ds = ds_size / 100
+    return random_split(dataset, [keep_ds * 0.6, keep_ds * 0.2, keep_ds * 0.2,  1 - keep_ds], generator=generator)
 
-def covid19_dataloaders(batch_size=64):
-    train, val, test = get_covid19_split()
+def covid19_dataloaders():
+    from utils.parse_args import parse_args
+    
+    args = parse_args()
+    ds_size = args['dataset_size']
+    batch_size = args['batch_size']
+    image_size = args['image_resize']
+    
+    split = get_covid19_split(ds_size, image_size)
+    train, val, test = split[:3] if ds_size != 100 else split
+    
     train = DataLoader(train, batch_size=batch_size, shuffle=True)
     test = DataLoader(test, batch_size=batch_size, shuffle=False)
     val = DataLoader(val, batch_size=batch_size, shuffle=False)
 
     return (train, val, test)
-
-def get_covid19_split_small(dataset: COVID19Dataset = None):
-    dataset = get_base_dataset()
-    mean, std = get_mean_std(dataset, 20)
-    dataset.transform.transforms.append(transforms.Normalize(mean, std))
-    generator = torch.Generator().manual_seed(123)
     
-    return random_split(dataset, [0.06, 0.02, 0.02, 0.9], generator=generator)
-
-    
-def covid19_dataloaders_small(batch_size=64):
-    train, val, test, _ = get_covid19_split_small()
-    train = DataLoader(train, batch_size=batch_size, shuffle=True)
-    test = DataLoader(test, batch_size=batch_size, shuffle=False)
-    val = DataLoader(val, batch_size=batch_size, shuffle=False)
-
-    return (train, test, val)
-
 def estimate_dataset_memory(tensor: list[torch.Tensor, int], size: int = 1):
     single_sample_memory = \
         (tensor[0].numel())\
@@ -167,7 +173,5 @@ def estimate_dataset_memory(tensor: list[torch.Tensor, int], size: int = 1):
 if __name__ == "__main__":
     import random
     dataset = COVID19Dataset(transform=transforms.ToTensor())
-    mean, std = get_mean_std(dataset, 20)
-    dataset.transform.transforms.append(transforms.Normalize(mean, std))
     
     dataset.display_batch(random.sample(range(len(dataset)), 25))

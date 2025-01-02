@@ -6,6 +6,14 @@ from utils.setup import device_data_loader
 from classes.EarlyStopping import EarlyStopping
 args = parse_args()
 
+def _print(*pargs):
+    if args['verbose']:
+        print(*pargs)
+    if args['log']:
+        file_path = 'results/' + args['model'] + '.log'
+        with open(file_path, 'a') as f:
+            print(*pargs, file=f)
+
 def confusion_matrix(y, y_pred, class_count):
     confusion_matrix = torch.zeros(class_count, class_count, dtype=torch.int64)
     for true, prediction in zip(y, y_pred):
@@ -15,17 +23,31 @@ def confusion_matrix(y, y_pred, class_count):
 def plot_confusion_matrix(confusion_matrix, class_names):
     _, ax = plt.subplots()
     _ = ax.imshow(confusion_matrix, cmap='summer')
-    ax.set_xticks(range(len(class_names)))
+    ax.set_xticks(range(len(class_names))) 
     ax.set_yticks(range(len(class_names)))
     ax.set_xticklabels(class_names)
     ax.set_yticklabels(class_names)
-    plt.setp(ax.get_xticklabels(), rotation=30, ha='right', rotation_mode='anchor')
+    plt.setp(ax.get_xticklabels(), rotation=15, ha='center')
+    ax.xaxis.set_label_position('top') 
+
     for i in range(len(class_names)):
         for j in range(len(class_names)):
             _ = ax.text(j, i, int(confusion_matrix[i, j]), ha='center', va='center', color='black')
     plt.xlabel('Predicted')
     plt.ylabel('True')
+    
+    # Display a colorbar for the confusion matrix
+    cbar = ax.figure.colorbar(ax.imshow(confusion_matrix, cmap='summer'), ax=ax, fraction=0.046, pad=0.04)
+    cbar.ax.set_ylabel('Number of images', rotation=-90, va='bottom')
+    
+    # Save image
+    if args['save_fig']:
+        plt.savefig(f'./results/{args['model']}.png')
+        
+        
     plt.show()
+    
+        
 
 # def precision_recall(confusion_matrix):
 #     precision = torch.zeros(confusion_matrix.size(0))
@@ -60,7 +82,7 @@ def train_one_epoch(model: nn.Module, trainloader: torch.utils.data.DataLoader,
         total_loss += loss_value 
         if (batch + 1) % print_batch == 0:
             avg_loss = running_loss / print_batch
-            print(f'\t[Batch: {((batch + 1)):3d}]: Loss = {avg_loss:.3f}')
+            _print(f'\t[Batch: {((batch + 1)):3d}]: Loss = {avg_loss:.3f}')
             running_loss = 0.0
     accuracy = correct / (len(trainloader) * model.batch_size)
     return accuracy, total_loss
@@ -87,24 +109,24 @@ def train(model: nn.Module, trainloader: torch.utils.data.DataLoader,
           lossfn: nn.modules.loss, device: torch.device, epochs: int = 10) -> None:
 
     if args['full_device_load'] >= ELOAD.TRAINING:
-        print('Loading the training data into the GPU memory')
+        _print('Loading the training data into the GPU memory')
         trainloader = device_data_loader(device, trainloader)
     if args['full_device_load'] == ELOAD.TRAINING_VALIDATION:
-        print('Loading the validation data into the GPU memory')
+        _print('Loading the validation data into the GPU memory')
         validationloader = device_data_loader(device, validationloader)
     
-    print("Starting training")
+    _print("Starting training")
     early_stop = EarlyStopping(patience=5, delta=0.5)
 
     for epoch in range(epochs):
-        print(f'=========== Epoch: {epoch + 1} ===========')
+        _print(f'=========== Epoch: {epoch + 1} ===========')
         t_acc, total_tloss = train_one_epoch(model, trainloader, optimizer, lossfn, device)
         v_acc, total_vloss = validation_loss(model, validationloader, lossfn, device)
         
-        print(f'Train Loss: {(total_tloss / len(trainloader)):.2f}, Validation Loss: {(total_vloss / len(validationloader)):.2f}')
-        print(f'Train Accuracy: {(100 * t_acc):.2f}%, Validation Accuracy: {(100 * v_acc):.2f}%\n')
+        _print(f'Train Loss: {(total_tloss / len(trainloader)):.2f},\tValidation Loss: {(total_vloss / len(validationloader)):.2f}')
+        _print(f'Train Accuracy: {(100 * t_acc):.2f}%,\tValidation Accuracy: {(100 * v_acc):.2f}%\n')
         if early_stop(total_tloss, total_vloss):
-            print('Early stopping')
+            _print('Early stopping')
             break
     
     
@@ -129,5 +151,5 @@ def test(model: nn.Module, testloader: torch.utils.data.DataLoader,
             conf_matrix += confusion_matrix(y, predicted, model.class_count)
             correct += (predicted == y).sum().item()
     accuracy = correct / (len(testloader) * model.batch_size)
-    print(f'Accuracy: {(100 * accuracy):.2f}%, Avg. Loss: {(test_loss / len(testloader)):.2f}')
+    _print(f'Accuracy: {(100 * accuracy):.2f}%, Avg. Loss: {(test_loss / len(testloader)):.2f}')
     return accuracy, conf_matrix
