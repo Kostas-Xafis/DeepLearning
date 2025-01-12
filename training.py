@@ -11,13 +11,12 @@ device = get_device()
 dataset = COVID19Dataset()
 class_names = dataset.get_classes()
 
-
 trainloader, validationloader, testloader = covid19_dataloaders()
 
 X, y = trainloader.dataset[0]
 net = get_model(args, len(class_names), X.size()[1:])
 
-# Summary of our model
+# Summary of the model
 summary(net, X.size())
 
 # Train and evaluate the model
@@ -26,7 +25,7 @@ train(net, trainloader=trainloader, validationloader=validationloader,
         device=device, lossfn=nn.CrossEntropyLoss())
 
 # Test the model
-acc, conf_matrix = test(net, testloader=testloader, lossfn=nn.CrossEntropyLoss(), device=device)
+_, conf_matrix = test(net, testloader=testloader, lossfn=nn.CrossEntropyLoss(), device=device)
 
 # Print and display the confusion matrix
 print(conf_matrix)

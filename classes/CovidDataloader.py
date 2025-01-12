@@ -38,7 +38,7 @@ class COVID19Dataset(Dataset):
         rows = math.ceil(sample_size ** 0.5)
         cols = math.ceil(sample_size / rows)
         
-        fig, axes = plt.subplots(rows, cols, figsize=(15, 15))
+        _, axes = plt.subplots(rows, cols, figsize=(15, 15))
         
         for ax, idx in zip(axes.flatten(), indexes):
             image, label = self[idx]
@@ -57,7 +57,7 @@ class COVID19Dataset(Dataset):
         plt.ylabel('Number of images')
         plt.title('Number of images per label')
         plt.show()
-            
+
     def get_classes(self):
         if len(self.label_names) == 0:
             self.labels = []
@@ -72,14 +72,19 @@ class COVID19Dataset(Dataset):
 
         return self.label_names
     
-    def set_transform(self, transform):
+    def set_transform(self, transform: transforms.Compose):
         self.transform = transform
         
     def add_transform(self, transform):
+        if isinstance(transform, transforms.Compose):
+            self.transform = transform
+            return
         if self.transform is None:
             self.transform = transforms.Compose([transform])
-        else:
+        elif isinstance(self.transform, transforms.Compose):
             self.transform.transforms.append(transform)
+        else:
+            self.transform = transforms.Compose([self.transform, transform])
     
     def __len__(self):
         return len(self.image_paths)
@@ -96,7 +101,7 @@ class COVID19Dataset(Dataset):
 def get_mean_std(dataset: COVID19Dataset = None, batches=None):
     batch_size = 32
     loader = DataLoader(dataset, batch_size=32, shuffle=True)
-    
+
     mean = 0.
     std = 0.
     nb_samples = 0.
@@ -106,7 +111,7 @@ def get_mean_std(dataset: COVID19Dataset = None, batches=None):
         mean += data.mean(2).sum(0)
         std += data.std(2).sum(0)
         nb_samples += batch_samples
-        
+
         if nb_samples >= batches * batch_size:
             break
 
@@ -115,29 +120,24 @@ def get_mean_std(dataset: COVID19Dataset = None, batches=None):
 
     return mean, std
 
-def get_base_dataset():
-    transform = transforms.Compose([
-        transforms.ToTensor(),
-    ])
-    return COVID19Dataset(transform=transform)
-
 def get_covid19_single_dataloader(batch_size=64):
-    dataset = get_base_dataset()
-    mean, std = get_mean_std(dataset, 20)
+    dataset = COVID19Dataset(transform=transforms.ToTensor())
     return DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
-def get_covid19_split(ds_size: int = 100, image_size: int = 100):
-    dataset = get_base_dataset()
-    mean, std = get_mean_std(dataset, 20)
+def get_covid19_split(ds_size = 100, image_size = 100):
+    dataset = COVID19Dataset()
     if image_size != 100:
+        img = dataset[0][0]
         # Resize by actual percentage and not percentage squared
-        w,h = dataset[0][0].shape[1:]
+        w,h = img.width, img.height
         nw = int(w - (w * ((100 - image_size) / 2 / 100)))
         nh = int(h - (h * ((100 - image_size) / 2 / 100)))
         print('New image size:', nw, 'x', nh)
-        dataset.add_transform(transforms.Resize((nw, nh)))
-    generator = torch.Generator().manual_seed(123)
-    
+        dataset.add_transform(transforms.Compose([transforms.ToTensor(), transforms.Resize((nw, nh))]))
+    else:
+        dataset.add_transform(transforms.ToTensor())
+    generator = torch.Generator().manual_seed(42)
+
     if ds_size == 100:
         return random_split(dataset, [0.6, 0.2, 0.2], generator=generator)
     keep_ds = ds_size / 100
@@ -150,7 +150,7 @@ def covid19_dataloaders():
     ds_size = args['dataset_size']
     batch_size = args['batch_size']
     image_size = args['image_resize']
-    
+
     split = get_covid19_split(ds_size, image_size)
     train, val, test = split[:3] if ds_size != 100 else split
     
