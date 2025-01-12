@@ -1,44 +1,50 @@
-from torch import nn
+import torch.nn as nn
 
 class BasicBlock(nn.Module):
-    def __init__(self, n_in: int, n_filters: int, stride: int = 1):
+    def __init__(self, in_channels, n_filters, stride=1):
         super(BasicBlock, self).__init__()
-        if stride != 1 and stride != 2:
-            raise ValueError('Stride must be 1 or 2')
-        self.n_in = n_in
-        self.n_filters = n_filters
-        self.stride = stride
-        self.relu = nn.ReLU()
         self.seq = nn.Sequential(
-            # Conv layer with n_filters filters, kernel size of 3, stride of 1, padding of 1, batch normalization and ReLU activation
-            nn.Conv2d(n_in, n_filters, kernel_size=3, stride=stride, padding=1),
+            nn.Conv2d(in_channels, n_filters, kernel_size=3, stride=stride, padding=1, bias=False),
             nn.BatchNorm2d(n_filters),
-            nn.ReLU(),
-            
-            # Conv layer with n_filters filter and kernel size of 3, stride of 1, batch normalization and ReLU activation
-            nn.Conv2d(n_filters, n_filters, kernel_size=3, stride=1, padding=1),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(n_filters, n_filters, kernel_size=3, stride=1, padding=1, bias=False),
             nn.BatchNorm2d(n_filters),
-            nn.ReLU(),
         )
         
-        self.downsample = nn.Sequential(
-            nn.Conv2d(n_in, n_filters, kernel_size=3, stride=stride),
-            nn.BatchNorm2d(n_filters),
-        )
+        # Downsampling layer, if needed
+        self.downsample = None
+        if in_channels != n_filters:
+            self.downsample = nn.Sequential(
+                nn.Conv2d(in_channels, n_filters, kernel_size=1, stride=stride, bias=False),
+                nn.BatchNorm2d(n_filters),
+            )
+        self.seq2 = None
+        if stride != 1:
+            self.seq2 = nn.Sequential(
+                nn.Conv2d(in_channels, n_filters, kernel_size=1, stride=stride, bias=False),
+                nn.BatchNorm2d(n_filters),
+            )
+        self.relu = nn.ReLU()
 
-        if stride == 2:
-            self.seq2 = nn.Conv2d(n_in, n_filters, kernel_size=1, stride=stride),
-            
-    
     def forward(self, x):
         identity = x
+        
+        out = self.seq(x)
+        
+        # Downsampling if needed
+        if self.downsample is not None:
+            identity = self.downsample(x)
+        out += identity
+        out = self.relu(out)
 
-        if self.n_in != self.n_filters:
-            identity = self.downsample(identity)
+        if self.seq2 is not None:
+            out2 = self.seq2(x)
+            out += out2
         
-        if self.stride == 2:
-            x = self.seq2(x)
-        return self.relu(self.seq(x) + identity)
+        out = self.relu(out)
         
-        
-        
+        return out
+
+# Example usage:
+# block = BasicBlock(in_channels=64, n_filters=64, stride=2)
+# print(block)
