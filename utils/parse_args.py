@@ -32,7 +32,7 @@ def parse_cnn_args():
         'save_fig': (bool, False, 'Save the confusion matrix figure to a file'),
         # 'help': (bool, False, 'Print this message.')
     }
-    
+
     if '--help' in sys.argv:
         for arg, arg_type in arg_specs.items():
             print(f'\t{arg}: \t{help_format(arg_type)}')
@@ -132,6 +132,8 @@ def pick_model_specific_params(args: dict, exclude: list = []):
         bs, ep, lr = (64, 20, 10e-3)
     elif args['model'] == 'cnn2':
         bs, ep, lr = (64, 20, 10e-3)
+    elif args['model'] == 'cnn-basicblock':
+        bs, ep, lr = (64, 10, 10e-3)
 
     if 'batch_size' not in exclude:
         args['batch_size'] = bs

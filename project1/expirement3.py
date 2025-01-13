@@ -20,7 +20,7 @@ random_state_offset = np.random.randint(0, 1000)
 for i in range(num_iterations):
     # Split dataset into training and testing sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=random_state_offset*i)
-    
+
     # Normalize features to [0, 1] range
     scaler = MinMaxScaler()
     X_train = scaler.fit_transform(X_train)

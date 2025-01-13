@@ -18,7 +18,7 @@ class CNN1(CustomCNN):
             nn.ReLU(),
             # Max pooling layer with stride 2
             nn.MaxPool2d(kernel_size=2, stride=2),
-            
+
             nn.Flatten(),
             nn.LazyLinear(self.last_layer_output),
             nn.ReLU(),

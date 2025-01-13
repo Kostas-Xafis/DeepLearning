@@ -55,7 +55,7 @@ class LogisticRegressionEP34:
         # Ensure input is numpy and initialize parameters
         X = np.array(X)
         y = np.array(y)
-        
+
         if X.shape[0] != y.shape[0]:
             raise ValueError("Dimension mismatch between X and y.")
 

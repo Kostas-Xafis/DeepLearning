@@ -27,28 +27,28 @@ class COVID19Dataset(Dataset):
         for label_idx, subdir in enumerate(sub_dirs):
             subdir_path = os.path.join(self.root_dir, subdir)
             self.label_names.append(subdir)
-            
+
             sub_dir_paths = os.listdir(subdir_path)
             for img_name in sub_dir_paths:
                 self.image_paths.append(subdir_path + '/' + img_name)
                 self.labels.append(label_idx)
-    
+
     def display_batch(self, indexes: list[int]):
         sample_size = len(indexes)
         rows = math.ceil(sample_size ** 0.5)
         cols = math.ceil(sample_size / rows)
-        
+
         _, axes = plt.subplots(rows, cols, figsize=(15, 15))
-        
+
         for ax, idx in zip(axes.flatten(), indexes):
             image, label = self[idx]
             ax.imshow(image.permute(1, 2, 0))
             ax.set_title(self.label_names[label])
             ax.axis('off')
-        
+
         plt.tight_layout()
         plt.show()
-        
+
         # Bar chart for total amount of images for each label
         label_counts = [self.labels.count(i) for i in range(len(set(self.labels)))]
         plt.figure(figsize=(10, 5))
@@ -71,10 +71,10 @@ class COVID19Dataset(Dataset):
                 self.label_names.append(subdir)
 
         return self.label_names
-    
+
     def set_transform(self, transform: transforms.Compose):
         self.transform = transform
-        
+
     def add_transform(self, transform):
         if isinstance(transform, transforms.Compose):
             self.transform = transform
@@ -85,13 +85,13 @@ class COVID19Dataset(Dataset):
             self.transform.transforms.append(transform)
         else:
             self.transform = transforms.Compose([self.transform, transform])
-    
+
     def __len__(self):
         return len(self.image_paths)
 
     def __getitem__(self, idx):
         image = Image.open(self.image_paths[idx]).convert('RGB')
-        
+
         if self.transform:
             image = self.transform(image)
 
@@ -145,7 +145,7 @@ def get_covid19_split(ds_size = 100, image_size = 100):
 
 def covid19_dataloaders():
     from utils.parse_args import parse_args
-    
+
     args = parse_args()
     ds_size = args['dataset_size']
     batch_size = args['batch_size']
@@ -153,19 +153,19 @@ def covid19_dataloaders():
 
     split = get_covid19_split(ds_size, image_size)
     train, val, test = split[:3] if ds_size != 100 else split
-    
+
     train = DataLoader(train, batch_size=batch_size, shuffle=True)
     test = DataLoader(test, batch_size=batch_size, shuffle=False)
     val = DataLoader(val, batch_size=batch_size, shuffle=False)
 
     return (train, val, test)
-    
+
 def estimate_dataset_memory(tensor: list[torch.Tensor, int], size: int = 1):
     single_sample_memory = \
         (tensor[0].numel())\
             * torch.tensor([], dtype=torch.float32).element_size() \
             + 1 * torch.tensor([], dtype=torch.int32).element_size()
-    
+
     return size * single_sample_memory / 1000**3
 
 
@@ -173,5 +173,5 @@ def estimate_dataset_memory(tensor: list[torch.Tensor, int], size: int = 1):
 if __name__ == "__main__":
     import random
     dataset = COVID19Dataset(transform=transforms.ToTensor())
-    
+
     dataset.display_batch(random.sample(range(len(dataset)), 25))

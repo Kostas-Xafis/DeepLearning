@@ -1,0 +1,142 @@
+Starting training
+=========== Epoch: 1 ===========
+	[10% of Batches]: Loss = 8.608
+	[20% of Batches]: Loss = 1.128
+	[30% of Batches]: Loss = 0.995
+	[40% of Batches]: Loss = 0.935
+	[50% of Batches]: Loss = 0.871
+	[60% of Batches]: Loss = 0.818
+	[70% of Batches]: Loss = 0.806
+	[80% of Batches]: Loss = 0.766
+	[90% of Batches]: Loss = 0.707
+	[100% of Batches]: Loss = 0.643
+Train Loss: 1.58,	Validation Loss: 0.66
+Train Accuracy: 62.33%,	Validation Accuracy: 73.27%
+
+=========== Epoch: 2 ===========
+	[10% of Batches]: Loss = 0.636
+	[20% of Batches]: Loss = 0.723
+	[30% of Batches]: Loss = 0.620
+	[40% of Batches]: Loss = 0.611
+	[50% of Batches]: Loss = 0.651
+	[60% of Batches]: Loss = 0.591
+	[70% of Batches]: Loss = 0.578
+	[80% of Batches]: Loss = 0.625
+	[90% of Batches]: Loss = 0.575
+	[100% of Batches]: Loss = 0.589
+Train Loss: 0.62,	Validation Loss: 0.86
+Train Accuracy: 75.35%,	Validation Accuracy: 67.54%
+
+=========== Epoch: 3 ===========
+	[10% of Batches]: Loss = 0.596
+	[20% of Batches]: Loss = 0.567
+	[30% of Batches]: Loss = 0.482
+	[40% of Batches]: Loss = 0.537
+	[50% of Batches]: Loss = 0.508
+	[60% of Batches]: Loss = 0.547
+	[70% of Batches]: Loss = 0.546
+	[80% of Batches]: Loss = 0.591
+	[90% of Batches]: Loss = 0.565
+	[100% of Batches]: Loss = 0.519
+Train Loss: 0.55,	Validation Loss: 0.54
+Train Accuracy: 78.49%,	Validation Accuracy: 77.71%
+
+=========== Epoch: 4 ===========
+	[10% of Batches]: Loss = 0.477
+	[20% of Batches]: Loss = 0.542
+	[30% of Batches]: Loss = 0.494
+	[40% of Batches]: Loss = 0.466
+	[50% of Batches]: Loss = 0.469
+	[60% of Batches]: Loss = 0.506
+	[70% of Batches]: Loss = 0.489
+	[80% of Batches]: Loss = 0.480
+	[90% of Batches]: Loss = 0.455
+	[100% of Batches]: Loss = 0.503
+Train Loss: 0.49,	Validation Loss: 0.64
+Train Accuracy: 81.74%,	Validation Accuracy: 74.02%
+
+=========== Epoch: 5 ===========
+	[10% of Batches]: Loss = 0.488
+	[20% of Batches]: Loss = 0.467
+	[30% of Batches]: Loss = 0.495
+	[40% of Batches]: Loss = 0.450
+	[50% of Batches]: Loss = 0.421
+	[60% of Batches]: Loss = 0.438
+	[70% of Batches]: Loss = 0.428
+	[80% of Batches]: Loss = 0.464
+	[90% of Batches]: Loss = 0.477
+	[100% of Batches]: Loss = 0.459
+Train Loss: 0.46,	Validation Loss: 0.66
+Train Accuracy: 82.53%,	Validation Accuracy: 76.21%
+
+=========== Epoch: 6 ===========
+	[10% of Batches]: Loss = 0.432
+	[20% of Batches]: Loss = 0.431
+	[30% of Batches]: Loss = 0.392
+	[40% of Batches]: Loss = 0.351
+	[50% of Batches]: Loss = 0.424
+	[60% of Batches]: Loss = 0.438
+	[70% of Batches]: Loss = 0.444
+	[80% of Batches]: Loss = 0.423
+	[90% of Batches]: Loss = 0.416
+	[100% of Batches]: Loss = 0.464
+Train Loss: 0.42,	Validation Loss: 0.59
+Train Accuracy: 83.80%,	Validation Accuracy: 75.65%
+
+=========== Epoch: 7 ===========
+	[10% of Batches]: Loss = 0.380
+	[20% of Batches]: Loss = 0.355
+	[30% of Batches]: Loss = 0.410
+	[40% of Batches]: Loss = 0.377
+	[50% of Batches]: Loss = 0.354
+	[60% of Batches]: Loss = 0.375
+	[70% of Batches]: Loss = 0.361
+	[80% of Batches]: Loss = 0.378
+	[90% of Batches]: Loss = 0.347
+	[100% of Batches]: Loss = 0.324
+Train Loss: 0.36,	Validation Loss: 0.65
+Train Accuracy: 85.95%,	Validation Accuracy: 73.79%
+
+=========== Epoch: 8 ===========
+	[10% of Batches]: Loss = 0.304
+	[20% of Batches]: Loss = 0.370
+	[30% of Batches]: Loss = 0.320
+	[40% of Batches]: Loss = 0.318
+	[50% of Batches]: Loss = 0.364
+	[60% of Batches]: Loss = 0.396
+	[70% of Batches]: Loss = 0.292
+	[80% of Batches]: Loss = 0.315
+	[90% of Batches]: Loss = 0.328
+	[100% of Batches]: Loss = 0.326
+Train Loss: 0.33,	Validation Loss: 0.61
+Train Accuracy: 87.19%,	Validation Accuracy: 76.19%
+
+=========== Epoch: 9 ===========
+	[10% of Batches]: Loss = 0.321
+	[20% of Batches]: Loss = 0.296
+	[30% of Batches]: Loss = 0.300
+	[40% of Batches]: Loss = 0.325
+	[50% of Batches]: Loss = 0.328
+	[60% of Batches]: Loss = 0.299
+	[70% of Batches]: Loss = 0.290
+	[80% of Batches]: Loss = 0.254
+	[90% of Batches]: Loss = 0.337
+	[100% of Batches]: Loss = 0.277
+Train Loss: 0.30,	Validation Loss: 2.73
+Train Accuracy: 88.60%,	Validation Accuracy: 50.56%
+
+=========== Epoch: 10 ===========
+	[10% of Batches]: Loss = 0.253
+	[20% of Batches]: Loss = 0.227
+	[30% of Batches]: Loss = 0.256
+	[40% of Batches]: Loss = 0.267
+	[50% of Batches]: Loss = 0.279
+	[60% of Batches]: Loss = 0.269
+	[70% of Batches]: Loss = 0.241
+	[80% of Batches]: Loss = 0.276
+	[90% of Batches]: Loss = 0.277
+	[100% of Batches]: Loss = 0.295
+Train Loss: 0.27,	Validation Loss: 0.48
+Train Accuracy: 89.93%,	Validation Accuracy: 81.79%
+
+Accuracy: 81.72%, Avg. Loss: 0.46

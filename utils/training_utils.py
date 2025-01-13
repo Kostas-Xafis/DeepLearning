@@ -23,17 +23,18 @@ def confusion_matrix(y: Tensor, y_pred: Tensor, class_count: int) -> Tensor:
     return confusion_matrix
 
 def plot_confusion_matrix(confusion_matrix: Tensor, class_names: list[str]) -> None:
+    class_count = len(class_names)
     _, ax = plt.subplots()
     _ = ax.imshow(confusion_matrix, cmap='summer')
-    ax.set_xticks(range(len(class_names)))
-    ax.set_yticks(range(len(class_names)))
+    ax.set_xticks(range(class_count))
+    ax.set_yticks(range(class_count))
     ax.set_xticklabels(class_names)
     ax.set_yticklabels(class_names)
     plt.setp(ax.get_xticklabels(), rotation=15, ha='center')
     ax.xaxis.set_label_position('top') 
 
-    for i in range(len(class_names)):
-        for j in range(len(class_names)):
+    for i in range(class_count):
+        for j in range(class_count):
             _ = ax.text(j, i, int(confusion_matrix[i, j]), ha='center', va='center', color='black')
     plt.xlabel('Predicted')
     plt.ylabel('True')
@@ -45,7 +46,6 @@ def plot_confusion_matrix(confusion_matrix: Tensor, class_names: list[str]) -> N
     # Save image
     if args['save_fig']:
         plt.savefig(f'./results/{args['model']}.png')
-
 
     plt.show()
 
