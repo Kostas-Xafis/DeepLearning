@@ -11,18 +11,18 @@ This project focuses on training and evaluating various deep learning models for
   - [Command Line Arguments](#command-line-arguments)
 
 ## Summary
-This project implements deep learning models to classify images from the COVID-19 dataset. The models are trained and evaluated using PyTorch, and the results are logged for analysis. The project includes scripts for data loading, model training, evaluation, and visualization.
+This project implements deep learning models to classify X-Ray images from the COVID-19 dataset. The models are trained and evaluated using PyTorch, and the results are logged for analysis. The project includes scripts for data loading, model training, evaluation, and visualization.
 
 ## Installation
 To install the necessary dependencies, follow these steps:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/deep-learning-project.git
-    cd deep-learning-project
+    git clone https://github.com/Kostas-Xafis/DeepLearning
+    cd DeepLearning
     ```
 
-2. Create a virtual environment and activate it:
+2. Create a virtual environment and activate it (if needed):
     ```bash
     python3 -m venv venv
     source venv/bin/activate

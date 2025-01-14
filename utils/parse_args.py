@@ -32,7 +32,7 @@ def parse_cnn_args():
         'save_fig': (bool, False, 'Save the confusion matrix figure to a file'),
     }
 
-    if '--help' in sys.argv:
+    if '--help' in sys.argv or '-h' in sys.argv:
         print('CNN model training for COVID-19 Detection using Chest X-ray images\n')
         print('--Usage: python main.py [options]--\n')
         for arg, arg_type in arg_specs.items():
