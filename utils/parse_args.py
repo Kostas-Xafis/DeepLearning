@@ -67,6 +67,7 @@ def gather_args():
     # Set the batch size, epochs and learning rate based on the model
     pick_model_specific_params(args)
 
+    # Ask the user if he wants to use the full dataset or a smaller one for quicker testing
     inp = input('\nUse the full dataset or a smaller one (1:Full or 2:Small): ')
     if inp != '2' and inp != '1':
         print('Invalid input. Exiting...')
@@ -100,6 +101,7 @@ def gather_args():
         inp = input('Εnter a number: ')
 
         if inp == '5':
+            # Ask the user a percentage to resize the images
             inp = input('Enter the new image size (1-100)%: ')
             args['image_resize'] = int(inp)
             if args['image_resize'] < 1 or args['image_resize'] > 100:
@@ -133,7 +135,7 @@ def pick_model_specific_params(args: dict, exclude: list = []):
     elif args['model'] == 'cnn2':
         bs, ep, lr = (64, 20, 10e-3)
     elif args['model'] == 'cnn-basicblock':
-        bs, ep, lr = (64, 10, 10e-3)
+        bs, ep, lr = (64, 10, 10e-4)
 
     if 'batch_size' not in exclude:
         args['batch_size'] = bs
@@ -144,10 +146,12 @@ def pick_model_specific_params(args: dict, exclude: list = []):
 
 final_args = None
 def parse_args():
+    # Store and return parsed arguments 
     global final_args
     if final_args is not None:
         return final_args
 
+    # Else parse the arguments
     total_args = sys.argv
     if len(total_args) == 1:
         final_args = gather_args()

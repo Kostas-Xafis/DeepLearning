@@ -1,4 +1,4 @@
-import torch.nn as nn
+from torch import nn
 
 class BasicBlock(nn.Module):
     def __init__(self, in_channels, n_filters, stride=1):

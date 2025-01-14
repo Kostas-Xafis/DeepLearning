@@ -14,7 +14,7 @@ class_names = dataset.get_classes()
 trainloader, validationloader, testloader = covid19_dataloaders()
 
 X, y = trainloader.dataset[0]
-net = get_model(args, len(class_names), X.size()[1:])
+net = get_model(args, len(class_names))
 
 # Summary of the model
 summary(net, X.size())

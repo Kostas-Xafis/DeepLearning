@@ -1,5 +1,6 @@
 import torch
 from torch.utils.data import DataLoader
+from utils.parse_args import parse_args
 
 def get_device():
     return torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -13,17 +14,17 @@ def device_data_loader(device: torch.device, dl: DataLoader) -> list[tuple[torch
         new_dl.append(load_to_device(X, y, device))
     return new_dl
 
-def get_model(args: dict[str, any], class_count: int, img_size: torch.Size) -> torch.nn.Module:
+def get_model(args: dict[str, any], class_count: int) -> torch.nn.Module:
     device = get_device()
     if args['model'] == 'cnn1':
         from models.CNN1 import CNN1
-        return CNN1(args, class_count, img_size).to(device)
+        return CNN1(args, class_count).to(device)
     elif args['model'] == 'cnn2':
         from models.CNN2 import CNN2
-        return CNN2(args, class_count, img_size).to(device)
+        return CNN2(args, class_count).to(device)
     elif args['model'] == 'cnn-basicblock':
         from models.CNN3 import CNN3
-        return CNN3(args=args, class_count=class_count, img_size=img_size).to(device)
+        return CNN3(args, class_count).to(device)
     elif args['model'] == 'resnet50':
         from models.ResNet50 import Resnet50
         return Resnet50(args, class_count).to(device)
@@ -34,9 +35,9 @@ def get_model(args: dict[str, any], class_count: int, img_size: torch.Size) -> t
         raise ValueError(f'Unknown model: {args["model"]}')
 
 class DeviceLoader:
-    def __init__(self, device: torch.device = None, args: dict[str, any] = None, dataloader: DataLoader = None, loader_type: str = None):
+    def __init__(self, device: torch.device = None, dataloader: DataLoader = None, loader_type: str = None):
         self.device = device if device is not None else get_device()
-        self.args = args
+        self.args = parse_args()
         self.fully_loaded = False
 
         self.dataset = dataloader

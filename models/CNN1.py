@@ -1,9 +1,9 @@
-from torch import nn, Size
+from torch import nn
 from models.custom_cnn import CustomCNN
 
 class CNN1(CustomCNN):
-    def __init__(self, args, class_count: int, img_size: Size):
-        super(CNN1, self).__init__(args, class_count, img_size)
+    def __init__(self, args, class_count: int):
+        super(CNN1, self).__init__(args, class_count)
         self.last_layer_output = 32
         self.seq = nn.Sequential(
             # Conv layer with 8 filters, kernel size 3 and ReLU activation

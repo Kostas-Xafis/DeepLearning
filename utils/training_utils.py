@@ -94,8 +94,8 @@ def train(model: nn.Module, trainloader: DataLoader,
           validationloader: DataLoader, optimizer: torch.optim.Optimizer, 
           lossfn: nn.modules.loss, device: torch.device, epochs: int = 10) -> None:
 
-    trainloader = DeviceLoader(device, args, trainloader, 'training')
-    validationloader = DeviceLoader(device, args, validationloader, 'validation')
+    trainloader = DeviceLoader(device, trainloader, 'training')
+    validationloader = DeviceLoader(device, validationloader, 'validation')
 
     _print("Starting training")
     early_stop = EarlyStopping(patience=5, delta=0.5)
@@ -115,7 +115,7 @@ def test(model: nn.Module, testloader: DataLoader,
          lossfn: nn.modules.loss, device: torch.device) -> tuple[float, Tensor]:
 
     # If it can fit the validation data, it can fit test data
-    testloader = DeviceLoader(device, args, testloader, 'validation')
+    testloader = DeviceLoader(device, testloader, 'validation')
 
     conf_matrix = torch.zeros(model.class_count, model.class_count, dtype=torch.int64)
     model.eval()
