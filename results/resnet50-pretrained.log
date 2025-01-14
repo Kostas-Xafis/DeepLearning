@@ -70,7 +70,3 @@ Train Loss: 0.11,	Validation Loss: 0.34
 Train Accuracy: 95.99%,	Validation Accuracy: 87.92%
 
 Accuracy: 87.43%, Avg. Loss: 0.35
-Loading the training data into the GPU memory
-Loading the validation data into the GPU memory
-Starting training
-=========== Epoch: 1 ===========

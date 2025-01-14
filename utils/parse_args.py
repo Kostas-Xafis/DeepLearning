@@ -10,7 +10,7 @@ def parser(arg_specs: dict[str, tuple]):
 
     for arg, arg_type in arg_specs.items():
         help = help_format(arg_type)
-        if type(arg_type[0]) == bool:
+        if arg_type[0] == bool:
             parser.add_argument(f'--{arg}', action=argparse.BooleanOptionalAction, help=help, default=arg_type[1])
         else:
             parser.add_argument(f'--{arg}', type=arg_type[0], help=help, default=arg_type[1])
@@ -30,10 +30,11 @@ def parse_cnn_args():
         'verbose': (bool, False, 'Print verbose output'),
         'log': (bool, False, 'Log the output to a file'),
         'save_fig': (bool, False, 'Save the confusion matrix figure to a file'),
-        # 'help': (bool, False, 'Print this message.')
     }
 
     if '--help' in sys.argv:
+        print('CNN model training for COVID-19 Detection using Chest X-ray images\n')
+        print('--Usage: python main.py [options]--\n')
         for arg, arg_type in arg_specs.items():
             print(f'\t{arg}: \t{help_format(arg_type)}')
         print('\thelp: Print this message.')
@@ -46,7 +47,6 @@ def parse_cnn_args():
     args['dataset_size'] = 100 if args['dataset_size'] == 1 else 10
 
     pick_model_specific_params(args, exclude=[ x for x in ['batch_size', 'epochs', 'lr'] if args[x] is not None])
-    print(args)
     return args
 
 def gather_args():
