@@ -30,11 +30,11 @@ To install the necessary dependencies, follow these steps:
     ```
 
 ## Usage
-[!IMPORTANT]
+> [!IMPORTANT]
 Before running the training script, make sure to load the dataset into the `dataset` directory. The dataset should be organized as follows:
 Example: `dataset/COVID-19/Radiography_Dataset/COVID/COVID-1.png`
 
-To train and evaluate a model, use the `training.py` script. Below is an example command to run the script:
+To train and evaluate a model, execute the `training.py` script, like in the example below:
 
 ```bash
 python training.py
@@ -67,13 +67,16 @@ Would you like to load the full dataset into the GPU memory?
 ## Command Line Arguments
 The following arguments can be passed to the `training.py` script:
 
-- `--model`: Specifies the model to use. Options are `cnn1`, `cnn2`, `resnet50`, `resnet50-pretrained`, `cnn-basicblock`.
+- `--model`: Specifies the model to use. Options are `cnn1`, `cnn2`, `resnet50`, `resnet50-pretrained`, `cnn-basicblock`. Default is `cnn1`.
 - `--epochs`: Number of epochs to train the model. Default is 10.
 - `--batch_size`: Batch size for training. Default is 64.
 - `--lr`: Learning rate for the optimizer. Default is 0.001.
-- `--verbose`: If set, enables verbose logging.
-- `--log`: If set, logs the output to a file.
-- `--save_fig`: If set, saves the confusion matrix plot.
+- `--full_device_load`: If set, loads the dataset into the GPU memory: 1 (None), 2 (Training data), 3 (Validation data), 4 (Training & Validation data). Default: None.
+- `--dataset_size`: Size of the dataset. 1 (Full), 2 (Small)
+- `--image_resize`: Resize the images to a specific percentage (1-100%). Default is 100%.
+- `--verbose`: If set, enables verbose logging. Default is True.
+- `--log`: If set, logs the output to a file. Default is True.
+- `--save_fig`: If set, saves the confusion matrix plot. Default is True.
 
 Example usage with all arguments:
 
