@@ -1,7 +1,5 @@
 Starting training
 =========== Epoch: 1 ===========
-Starting training
-=========== Epoch: 1 ===========
 	[10% of Batches]: Loss = 6.990
 	[20% of Batches]: Loss = 1.061
 	[30% of Batches]: Loss = 0.931

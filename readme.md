@@ -5,13 +5,9 @@ This project focuses on training and evaluating various deep learning models for
 ## Table of Contents
 - [Deep Learning Project](#deep-learning-project)
   - [Table of Contents](#table-of-contents)
-  - [Summary](#summary)
   - [Installation](#installation)
   - [Usage](#usage)
   - [Command Line Arguments](#command-line-arguments)
-
-## Summary
-This project implements deep learning models to classify X-Ray images from the COVID-19 dataset. The models are trained and evaluated using PyTorch, and the results are logged for analysis. The project includes scripts for data loading, model training, evaluation, and visualization.
 
 ## Installation
 To install the necessary dependencies, follow these steps:
@@ -34,6 +30,10 @@ To install the necessary dependencies, follow these steps:
     ```
 
 ## Usage
+[!IMPORTANT]
+Before running the training script, make sure to load the dataset into the `dataset` directory. The dataset should be organized as follows:
+Example: `dataset/COVID-19/Radiography_Dataset/COVID/COVID-1.png`
+
 To train and evaluate a model, use the `training.py` script. Below is an example command to run the script:
 
 ```bash

@@ -8,3 +8,5 @@ images/
 Slides/
 data/
 dataset/
+*.zip
+pyvenv.cfg
