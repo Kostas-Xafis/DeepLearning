@@ -32,7 +32,7 @@ To install the necessary dependencies, follow these steps:
 ## Usage
 > [!IMPORTANT]
 Before running the training script, make sure to load the dataset into the `dataset` directory. The dataset should be organized as follows:
-Example: `dataset/COVID-19/Radiography_Dataset/COVID/COVID-1.png`
+Example: `./dataset/COVID-19_Radiography_Dataset/COVID/COVID-1.png`
 
 To train and evaluate a model, execute the `training.py` script, like in the example below:
 
